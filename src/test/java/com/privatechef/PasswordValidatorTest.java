@@ -7,27 +7,85 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordValidatorTest {
     PasswordValidator passwordValidator;
+    ExceptionMessages exceptionMessages = new ExceptionMessages();
 
     @BeforeEach
     void setUp() {
         passwordValidator = new PasswordValidator("");
     }
 
+    // Validate method
     @Test
     void validate_isValidPassword() {
-        passwordValidator.setPassword("!12WisheasdDALlkwq");
-        String expect = "Valid Password";
+        passwordValidator.setPassword("!12WisheasdDA");
+        String expect = exceptionMessages.VALID_PASSWORD;
 
         assertEquals(expect, passwordValidator.validate());
     }
 
+    @Test
+    void validate_checkLength() {
+        passwordValidator.setPassword("!12Wishasdqqwlksdas");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                passwordValidator.validate()
+        );
+        assertEquals(exceptionMessages.CHECK_LENGTH, ex.getMessage());
+    }
+
+    @Test
+    void validate_checkNumber() {
+        passwordValidator.setPassword("!Wishasdqqwlk");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                passwordValidator.validate()
+        );
+        assertEquals(exceptionMessages.CHECK_NUMBER, ex.getMessage());
+    }
+
+    @Test
+    void validate_checkUppercaseLetters() {
+        passwordValidator.setPassword("!0wishasdqqwlk");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                passwordValidator.validate()
+        );
+        assertEquals(exceptionMessages.CHECK_UPPERCASE, ex.getMessage());
+    }
+
+    @Test
+    void validate_checkLowercaseLetters() {
+        passwordValidator.setPassword("!0ABCDEFG");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                passwordValidator.validate()
+        );
+        assertEquals(exceptionMessages.CHECK_LOWERCASE, ex.getMessage());
+    }
+
+    @Test
+    void validate_checkWeekPassword() {
+        passwordValidator.setPassword("Password1!");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                passwordValidator.validate()
+        );
+        assertEquals(exceptionMessages.CHECK_IS_TO_WEEK, ex.getMessage());
+    }
+
+    @Test
+    void validate_checkHasSpecialCharacter() {
+        passwordValidator.setPassword("Password1");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                passwordValidator.validate()
+        );
+        assertEquals(exceptionMessages.CHECK_HAS_SPECIAL_CHAR, ex.getMessage());
+    }
+
+
+    // Check Methods
     @Test
     void checkLength_isNotValid() {
         passwordValidator.setPassword("Short");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkLength()
         );
-        assertEquals("Password length should be between 8 and 16 characters", ex.getMessage());
+        assertEquals(exceptionMessages.CHECK_LENGTH, ex.getMessage());
     }
 
     @Test
@@ -42,7 +100,7 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkNumber()
         );
-        assertEquals("Password should have at least 1 number", ex.getMessage());
+        assertEquals(exceptionMessages.CHECK_NUMBER, ex.getMessage());
     }
 
     @Test
@@ -57,7 +115,7 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkUppercaseLetters()
         );
-        assertEquals("Password should have at least 1 uppercase letter", ex.getMessage());
+        assertEquals(exceptionMessages.CHECK_UPPERCASE, ex.getMessage());
     }
 
     @Test
@@ -72,7 +130,7 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkLowercaseLetters()
         );
-        assertEquals("Password should have at least 1 lower case letter", ex.getMessage());
+        assertEquals(exceptionMessages.CHECK_LOWERCASE, ex.getMessage());
     }
 
     @Test
@@ -87,7 +145,7 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkWeekPassword()
         );
-        assertEquals("Password is too weak", ex.getMessage());
+        assertEquals(exceptionMessages.CHECK_IS_TO_WEEK, ex.getMessage());
     }
 
     @Test
@@ -104,7 +162,7 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkSpecialCharacters()
         );
-        assertEquals("Password should have at least 1 special character", ex.getMessage());
+        assertEquals(exceptionMessages.CHECK_HAS_SPECIAL_CHAR, ex.getMessage());
     }
 
     @Test
