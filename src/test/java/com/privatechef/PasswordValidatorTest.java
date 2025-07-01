@@ -63,7 +63,7 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkWeekPassword()
         );
-        assertEquals("Password length should be between 8 and 16 characters", ex.getMessage());
+        assertEquals("Password is too weak", ex.getMessage());
     }
 
     @Test

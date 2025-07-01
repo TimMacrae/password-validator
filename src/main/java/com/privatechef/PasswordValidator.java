@@ -44,8 +44,12 @@ public class PasswordValidator {
         }
     }
 
-    public String checkWeekPassword() {
-        return "Password is to week";
+    public void checkWeekPassword() {
+        for (String weak : this.weekPasswords) {
+            if (password.equalsIgnoreCase(weak)) {
+                throw new IllegalArgumentException("Password is too weak");
+            }
+        }
     }
 
     public String checkSpecialCharacters() {
