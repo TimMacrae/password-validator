@@ -73,6 +73,6 @@ class PasswordValidatorTest {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkSpecialCharacters()
         );
-        assertEquals("Password length should be between 8 and 16 characters", ex.getMessage());
+        assertEquals("Password should have at least 1 special character", ex.getMessage());
     }
 }

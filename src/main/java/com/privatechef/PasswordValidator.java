@@ -52,8 +52,10 @@ public class PasswordValidator {
         }
     }
 
-    public String checkSpecialCharacters() {
-        return "Password should have at least 1 special characters";
+    public void checkSpecialCharacters() {
+        if (!password.matches(".*[!@#$%^&*()_+\\-={}:\";'<>?,./].*")) {
+            throw new IllegalArgumentException("Password should have at least 1 special character");
+        }
     }
 
 
