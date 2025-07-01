@@ -26,8 +26,10 @@ public class PasswordValidator {
         }
     }
 
-    public String checkNumber() {
-        return "Password should have at least 1 number";
+    public void checkNumber() {
+        if (!password.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("Password should have at least 1 number");
+        }
     }
 
     public String checkUppercaseLetters() {
