@@ -5,19 +5,25 @@ public class PasswordValidator {
     final String[]  weekPasswords = {"Password", "Password123"};
     String password;
 
-    // Set password
+    // Constructor & Setter
     PasswordValidator(String password) {
+        this.password = password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
     // Validation
     public String validate() {
-        return "Valid";
+        return "Valid Password";
     }
 
     // Methods
-    public String checkLength() {
-        return "Password length should be between 8 and 16 characters";
+    public void checkLength() {
+        if (this.password == null || this.password.length() < 8 || this.password.length() > 16) {
+            throw new IllegalArgumentException("Password length should be between 8 and 16 characters");
+        }
     }
 
     public String checkNumber() {
