@@ -1,9 +1,25 @@
 package com.privatechef;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        ExceptionMessages exceptionMessages = new ExceptionMessages();
 
+
+        String password = getPasswordInput();
+        PasswordValidator passwordValidator = new PasswordValidator(password);
+        try {
+            passwordValidator.validate();
+            System.out.println(exceptionMessages.VALID_PASSWORD);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Invalid password: "+ ex.getMessage());
+        }
+    }
+
+    public static String getPasswordInput(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter your password:");
+        return scanner.nextLine();
     }
 }
