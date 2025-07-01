@@ -9,6 +9,7 @@ public class Main {
 
         String password = getPasswordInput();
         PasswordValidator passwordValidator = new PasswordValidator(password);
+
         try {
             passwordValidator.validate();
             System.out.println(exceptionMessages.VALID_PASSWORD);
