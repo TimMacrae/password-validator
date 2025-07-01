@@ -3,8 +3,8 @@ package com.privatechef;
 public class PasswordValidator {
     final ExceptionMessages exceptionMessages = new ExceptionMessages();
 
-    final String[]  weekPasswords = {"Password", "Password123", "Password1!"};
-    String password;
+    final String[]  weekPasswords = {"Password", "Password123", "Password1!","12345678"};
+    private String password;
 
     // Constructor & Setter
     PasswordValidator(String password) {
