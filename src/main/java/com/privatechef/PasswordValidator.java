@@ -32,8 +32,10 @@ public class PasswordValidator {
         }
     }
 
-    public String checkUppercaseLetters() {
-        return "Password should have at least 1 uppercase letter";
+    public void checkUppercaseLetters() {
+        if (!password.matches(".*[A-Z].*")) {
+            throw new IllegalArgumentException("Password should have at least 1 uppercase letter");
+        }
     }
 
     public String checkLowercaseLetters() {
