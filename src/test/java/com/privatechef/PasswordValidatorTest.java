@@ -14,7 +14,7 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void validate() {
+    void validate_isValidPassword() {
         passwordValidator.setPassword("!12WisheasdDALlkwq");
         String expect = "Valid Password";
 

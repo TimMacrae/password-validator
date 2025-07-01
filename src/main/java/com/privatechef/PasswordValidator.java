@@ -27,33 +27,33 @@ public class PasswordValidator {
     }
 
     public void checkNumber() {
-        if (!password.matches(".*\\d.*")) {
+        if (!this.password.matches(".*\\d.*")) {
             throw new IllegalArgumentException("Password should have at least 1 number");
         }
     }
 
     public void checkUppercaseLetters() {
-        if (!password.matches(".*[A-Z].*")) {
+        if (!this.password.matches(".*[A-Z].*")) {
             throw new IllegalArgumentException("Password should have at least 1 uppercase letter");
         }
     }
 
     public void checkLowercaseLetters() {
-        if (!password.matches(".*[a-z].*")) {
+        if (!this.password.matches(".*[a-z].*")) {
             throw new IllegalArgumentException("Password should have at least 1 lower case letter");
         }
     }
 
     public void checkWeekPassword() {
         for (String weak : this.weekPasswords) {
-            if (password.equalsIgnoreCase(weak)) {
+            if (this.password.equalsIgnoreCase(weak)) {
                 throw new IllegalArgumentException("Password is too weak");
             }
         }
     }
 
     public void checkSpecialCharacters() {
-        if (!password.matches(".*[!@#$%^&*()_+\\-={}:\";'<>?,./].*")) {
+        if (!this.password.matches(".*[!@#$%^&*()_+\\-={}:\";'<>?,./].*")) {
             throw new IllegalArgumentException("Password should have at least 1 special character");
         }
     }
