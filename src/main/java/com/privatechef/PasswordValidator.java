@@ -38,8 +38,10 @@ public class PasswordValidator {
         }
     }
 
-    public String checkLowercaseLetters() {
-        return "Password should have at least 1 lower case letter";
+    public void checkLowercaseLetters() {
+        if (!password.matches(".*[a-z].*")) {
+            throw new IllegalArgumentException("Password should have at least 1 lower case letter");
+        }
     }
 
     public String checkWeekPassword() {
