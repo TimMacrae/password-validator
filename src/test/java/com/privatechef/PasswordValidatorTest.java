@@ -14,7 +14,7 @@ class PasswordValidatorTest {
         passwordValidator = new PasswordValidator("");
     }
 
-    // Validate method
+    // Method validate
     @Test
     void validate_isValidPassword() {
         passwordValidator.setPassword("!12WisheasdDA");
@@ -78,9 +78,9 @@ class PasswordValidatorTest {
     }
 
 
-    // Check Methods
+    // Method checkLength
     @Test
-    void checkLength_isNotValid() {
+    void checkLength_isNotValid_throwsException() {
         passwordValidator.setPassword("Short");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkLength()
@@ -89,13 +89,14 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void checkLength_doesNotThrow_whenValid() {
+    void checkLength_isValid_doesNotThrowException() {
         passwordValidator.setPassword("ValidLength");
         assertDoesNotThrow(() -> passwordValidator.checkLength());
     }
 
+    // Method checkNumber
     @Test
-    void checkNumber_isNotValid() {
+    void checkNumber_isNotValid_throwsException() {
         passwordValidator.setPassword("NoNumber");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkNumber()
@@ -104,13 +105,14 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void checkNumber_doesNotThrow_whenValid() {
+    void checkNumber_isValid_doesNotThrowException() {
         passwordValidator.setPassword("ValidNumber0");
         assertDoesNotThrow(() -> passwordValidator.checkNumber());
     }
 
+    // Method checkUppercaseLetters
     @Test
-    void checkUppercaseLetters_isNotValid() {
+    void checkUppercaseLetters_isNotValid_throwsException() {
         passwordValidator.setPassword("uppercaseletters");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkUppercaseLetters()
@@ -119,13 +121,14 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void checkUppercaseLetters_doesNotThrow_whenValid() {
+    void checkUppercaseLetters_isValid_doesNotThrowException() {
         passwordValidator.setPassword("ValidUppercase");
         assertDoesNotThrow(() -> passwordValidator.checkUppercaseLetters());
     }
 
+    // Method checkLowercaseLetters
     @Test
-    void checkLowercaseLetters_isNotValid() {
+    void checkLowercaseLetters_isNotValid_throwsException() {
         passwordValidator.setPassword("LOWERCASELETTERS");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkLowercaseLetters()
@@ -134,13 +137,14 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void checkLowercaseLetters_doesNotThrow_whenValid() {
+    void checkLowercaseLetters_isValid_doesNotThrowException() {
         passwordValidator.setPassword("ValidLowercase");
         assertDoesNotThrow(() -> passwordValidator.checkLowercaseLetters());
     }
 
+    // Method checkWeekPassword
     @Test
-    void checkWeekPassword_isNotValid() {
+    void checkWeekPassword_isNotValid_throwsException() {
         passwordValidator.setPassword("password");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
                 passwordValidator.checkWeekPassword()
@@ -149,14 +153,14 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void checkWeekPassword_doesNotThrow_whenValid() {
+    void checkWeekPassword_isValid_doesNotThrowException() {
         passwordValidator.setPassword("ValidLowercase012");
         assertDoesNotThrow(() -> passwordValidator.checkWeekPassword());
     }
 
-
+    // Method checkSpecialCharacters
     @Test
-    void checkSpecialCharacters_isNotValid() {
+    void checkSpecialCharacters_isNotValid_throwsException() {
         passwordValidator.setPassword("Password01");
 
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
@@ -166,7 +170,7 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void checkSpecialCharacters_doesNotThrow_whenValid() {
+    void checkSpecialCharacters_isValid_doesNotThrowException() {
         passwordValidator.setPassword("ValidSpecial!");
         assertDoesNotThrow(() -> passwordValidator.checkSpecialCharacters());
     }
