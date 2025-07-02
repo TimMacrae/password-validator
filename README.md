@@ -1,4 +1,4 @@
-# 🔐 Password Validator
+# 🔐 Password Validator / Generator
 
 A simple Java project for validating user passwords against common security standards, including:
 
@@ -16,9 +16,22 @@ A simple Java project for validating user passwords against common security stan
 - PasswordValidator.java | Core validation logic with rule-based checks
 - ExceptionMessages.java | Centralized error messages for consistent responses
 - PasswordValidatorTest.java | unit tests using JUnit 5
-
+- generatePassword() | Generate a strong password
 ---
 
+
+
+## 🛠️ Features
+
+### 🔍 Password Validation
+
+You can input a password via the console, and the system will validate it against all security rules.
+
+### 🔐 Password Generation
+
+You can also generate a **random, strong, and valid password** using the `generatePassword()` method.
+
+---
 
 ## ✅ Validation Rules
 
