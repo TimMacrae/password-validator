@@ -174,4 +174,27 @@ class PasswordValidatorTest {
         passwordValidator.setPassword("ValidSpecial!");
         assertDoesNotThrow(() -> passwordValidator.checkSpecialCharacters());
     }
+
+    // Method generatePassword
+    @Test
+    void generatePassword_isValid_shouldNotThrowException() {
+        passwordValidator.setPassword("");
+        assertDoesNotThrow(() -> passwordValidator.generatePassword());
+    }
+
+    @Test
+    void generatePassword_shouldPassValidateMethod_shouldNotThrowException() {
+        passwordValidator.setPassword("");
+        passwordValidator.generatePassword();
+
+        assertEquals(exceptionMessages.VALID_PASSWORD, passwordValidator.validate());
+    }
+
+    @Test
+    void generatePassword_isDifferentOnEachCall() {
+        String p1 = passwordValidator.generatePassword();
+        String p2 = passwordValidator.generatePassword();
+        assertNotEquals(p1, p2);
+    }
+
 }
