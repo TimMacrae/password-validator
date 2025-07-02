@@ -11,7 +11,7 @@ public class PasswordValidator {
     private static final String DIGITS = "0123456789";
     private static final String SPECIALS = "!@#$%^&*()_+-={}[]|:;<>,.?/";
     private static final String ALL_CHARS = UPPERCASE + LOWERCASE + DIGITS + SPECIALS;
-    private static final String[] WEAK_PASSWORDS = {"password", "12345678", "qwerty", "Password1!"};
+    private static final String[] WEAK_PASSWORDS = {"password", "12345678", "Password123", "Password1!"};
 
     private static final SecureRandom randomNumber = new SecureRandom();
 
